@@ -12,13 +12,12 @@ locals {
 }
 
 resource "aws_dynamodb_table" "table" {
-  name           = var.table_name
-  billing_mode   = var.billing_mode
-  read_capacity  = local.read_capacity
-  write_capacity = local.write_capacity
-  hash_key       = var.hash_key
-  range_key      = var.range_key
-
+  name             = var.table_name
+  billing_mode     = var.billing_mode
+  read_capacity    = local.read_capacity
+  write_capacity   = local.write_capacity
+  hash_key         = var.hash_key
+  range_key        = var.range_key
   stream_enabled   = true
   stream_view_type = "NEW_AND_OLD_IMAGES"
 
@@ -53,7 +52,6 @@ resource "aws_dynamodb_table" "table" {
     }
   }
 
-
   server_side_encryption {
     enabled = true
   }
@@ -63,15 +61,14 @@ resource "aws_dynamodb_table" "table" {
   }
 
   tags = module.tags.tags
-
 }
 
 data "aws_iam_policy_document" "dynamodb_policy" {
   policy_id = "DynamodbAllPolicy"
   version   = "2012-10-17"
   statement {
-    effect   = "Allow"
+    effect    = "Allow"
     resources = [aws_dynamodb_table.table.arn]
-    actions  = ["dynamodb:*"]
+    actions   = ["dynamodb:*"]
   }
 }
