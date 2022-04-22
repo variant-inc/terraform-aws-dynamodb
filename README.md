@@ -12,7 +12,7 @@ Module to create dynamo db table
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 3.75.1 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | <4.0.0 |
 
 ## Modules
 
