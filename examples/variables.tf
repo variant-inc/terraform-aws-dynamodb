@@ -1,11 +1,7 @@
-variable "octopus_tags" {
-  description = "Octopus Tags"
+variable "tags" {
+  description = "A mapping of tags to assign to dynamo db table"
   type        = map(string)
-}
-
-variable "user_tags" {
-  description = "Mandatory user tags"
-  type        = map(string)
+  default     = {}
 }
 
 variable "billing_mode" {
