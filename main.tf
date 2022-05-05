@@ -1,11 +1,3 @@
-module "tags" {
-  source = "github.com/variant-inc/lazy-terraform//submodules/tags?ref=v1"
-
-  user_tags    = var.user_tags
-  octopus_tags = var.octopus_tags
-  name         = "dynamodb-terraform"
-}
-
 locals {
   read_capacity  = var.billing_mode == "PROVISIONED" ? var.read_capacity : null
   write_capacity = var.billing_mode == "PROVISIONED" ? var.write_capacity : null
@@ -60,7 +52,7 @@ resource "aws_dynamodb_table" "table" {
     enabled = true
   }
 
-  tags = module.tags.tags
+  tags = var.tags
 }
 
 data "aws_iam_policy_document" "dynamodb_policy" {

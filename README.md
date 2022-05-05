@@ -16,9 +16,7 @@ Module to create dynamo db table
 
 ## Modules
 
-| Name | Source | Version |
-|------|--------|---------|
-| <a name="module_tags"></a> [tags](#module\_tags) | github.com/variant-inc/lazy-terraform//submodules/tags | v1 |
+No modules.
 
 ## Resources
 
@@ -36,11 +34,10 @@ Module to create dynamo db table
 | <a name="input_global_secondary_indexes"></a> [global\_secondary\_indexes](#input\_global\_secondary\_indexes) | GSI for the table; subject to the normal limits on the number of GSIs, projected attributes, etc. Maximum of 5 global secondary indexes can be defined for the table | `any` | `null` | no |
 | <a name="input_hash_key"></a> [hash\_key](#input\_hash\_key) | The attribute to use as the hash (partition) key. Must also be defined as an attribute | `string` | n/a | yes |
 | <a name="input_local_secondary_indexes"></a> [local\_secondary\_indexes](#input\_local\_secondary\_indexes) | LSI on the table; these can only be allocated at creation so you cannot change this definition after you have created the resource, maximum of 5 global secondary indexes can be defined for the table | `any` | `null` | no |
-| <a name="input_octopus_tags"></a> [octopus\_tags](#input\_octopus\_tags) | Octopus Tags | `map(string)` | n/a | yes |
 | <a name="input_range_key"></a> [range\_key](#input\_range\_key) | The attribute to use as the range (sort) key. Must also be defined as an attribute | `string` | `null` | no |
 | <a name="input_read_capacity"></a> [read\_capacity](#input\_read\_capacity) | (Optional) The number of read units for this table. If the billing\_mode is PROVISIONED, this field is required. | `number` | `2` | no |
 | <a name="input_table_name"></a> [table\_name](#input\_table\_name) | Name of the DynamoDB table | `string` | n/a | yes |
-| <a name="input_user_tags"></a> [user\_tags](#input\_user\_tags) | Mandatory user tags | `map(string)` | n/a | yes |
+| <a name="input_tags"></a> [tags](#input\_tags) | A mapping of tags to assign to dynamo db table | `map(string)` | `{}` | no |
 | <a name="input_write_capacity"></a> [write\_capacity](#input\_write\_capacity) | (Optional) The number of write units for this table. If the billing\_mode is PROVISIONED, this field is required. | `number` | `2` | no |
 
 ## Outputs
