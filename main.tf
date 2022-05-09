@@ -52,7 +52,6 @@ resource "aws_dynamodb_table" "table" {
     enabled = true
   }
 
-  tags = var.tags
 }
 
 data "aws_iam_policy_document" "dynamodb_policy" {
