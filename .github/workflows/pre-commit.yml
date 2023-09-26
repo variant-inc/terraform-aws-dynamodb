@@ -1,18 +1,39 @@
-name: Pre-Commit
+---
+# yamllint disable rule:line-length
+name: Pre Commit
 
-on:
-  pull_request:
+on:  # yamllint disable-line rule:truthy
   push:
     branches:
-      - master
+      - "**"
+
+permissions: read-all
 
 jobs:
-  preCommit:
-    name: Pre-Commit
-    runs-on: eks
+  pre-commit:
+    name: Pre Commit
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-      - name: Execute pre-commit
-        # Run all pre-commit checks on max version supported
-        run: pre-commit run -a --color=always --show-diff-on-failure --all-files
+        uses: actions/checkout@v4
+      - uses: actions/setup-python@v3
+      - name: Install pre-commit dependencies
+        run: |
+          mkdir -p "$HOME/.local/bin"
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+          TF_DOCS_VERSION="$(curl -sfSL https://api.github.com/repos/terraform-docs/terraform-docs/releases/latest | jq -r '.tag_name')"
+          curl -sfSLo ./terraform-docs.tar.gz https://github.com/terraform-docs/terraform-docs/releases/download/$TF_DOCS_VERSION/terraform-docs-$TF_DOCS_VERSION-$(uname)-amd64.tar.gz
+          tar -xzf terraform-docs.tar.gz terraform-docs
+          chmod +x terraform-docs
+          mv terraform-docs $HOME/.local/bin/
+
+          TF_LINT_ZIP=$(curl -sfSL https://api.github.com/repos/terraform-linters/tflint/releases/latest | grep -o -E "https://.+?_linux_amd64.zip")
+          curl -sfSL "$TF_LINT_ZIP" > tflint.zip
+          unzip tflint.zip && rm tflint.zip
+          mv tflint $HOME/.local/bin/
+
+          curl -s https://raw.githubusercontent.com/aquasecurity/tfsec/master/scripts/install_linux.sh | bash
+
+          pip3 install checkov
+      - uses: pre-commit/action@v3.0.0

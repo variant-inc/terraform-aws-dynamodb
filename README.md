@@ -1,22 +1,15 @@
-# terraform-aws-dynamodb
+# Dynamodb Terraform Module
+
 Module to create dynamo db table
 
+<!-- markdownlint-disable line-length no-inline-html-->
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 4.22 |
-
-## Providers
-
-| Name | Version |
-|------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | ~> 4.22 |
-
-## Modules
-
-No modules.
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.0.0, <6.0.0 |
 
 ## Resources
 

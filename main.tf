@@ -4,6 +4,8 @@ locals {
 }
 
 resource "aws_dynamodb_table" "table" {
+  #checkov:skip=CKV_AWS_119:Ignore KMS CMR
+
   name             = var.table_name
   billing_mode     = var.billing_mode
   read_capacity    = local.read_capacity
@@ -44,6 +46,7 @@ resource "aws_dynamodb_table" "table" {
     }
   }
 
+  #tfsec:ignore:aws-dynamodb-table-customer-key
   server_side_encryption {
     enabled = true
   }
